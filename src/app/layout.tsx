@@ -11,6 +11,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import Head from "next/head";
 
 const georama = Georama({
   variable: "--font-georama",
@@ -100,7 +101,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-        <head>
+        <Head>
             {/* Additional SEO tags */}
             <link rel="icon" href="/favicon.ico" sizes="any" />
             <link rel="icon" href="/icon.svg" type="image/svg+xml" />
@@ -188,7 +189,7 @@ export default function RootLayout({
                     })
                 }}
             />
-        </head>
+        </Head>
         <body
             className={`antialiased ${georama.variable} ${orbitron.variable} ${logoFont.variable}`}
         >
