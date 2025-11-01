@@ -1,18 +1,31 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import {brand} from "@/lib/brand";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [showNav, setShowNav] = useState(true);
+    const scrollY = useRef(0);
 
-    // Handle scroll effect
+    // Handle scroll effect for background and hide/show
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Hide navbar on scroll down, show on scroll up
+            if (currentScroll > scrollY.current + 5) {
+                setShowNav(false);
+            } else if (currentScroll < scrollY.current - 2) {
+                setShowNav(true);
+            }
+
+            // Update background state based on scroll position
+            setScrolled(currentScroll > 20);
+
+            scrollY.current = currentScroll <= 0 ? 0 : currentScroll;
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -51,7 +64,7 @@ const Navbar = () => {
             {/* Desktop/Mobile Navbar */}
             <motion.nav
                 initial={{ y: -100 }}
-                animate={{ y: 0 }}
+                animate={{ y: showNav ? 0 : -100 }}
                 transition={{ duration: 0.5 }}
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
                     scrolled
@@ -72,7 +85,7 @@ const Navbar = () => {
                                 <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center">
                                     <span className="text-white font-bold text-xl">R</span>
                                 </div>
-                                <span className="text-white font-bold text-xl hidden sm:block">{brand}</span>
+                                <span className="text-white font-bold text-xl hidden sm:block">YourBrand</span>
                             </div>
                         </motion.a>
 
@@ -223,7 +236,7 @@ const Navbar = () => {
                                             href="mailto:hello@yourbrand.com"
                                             className="text-blue-400 hover:text-blue-300 transition-colors text-sm"
                                         >
-                                            hello@yourbrand.com
+                                            staff@renderly.com
                                         </a>
                                     </motion.div>
                                 </div>

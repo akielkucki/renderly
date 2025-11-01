@@ -135,7 +135,7 @@ const AboutSection = () => {
                 { label: "Time to Interactive", value: "1.2s" }
             ],
             visual: (
-                <div className="relative w-full h-full flex items-center justify-center">
+                <div className="relative w-full h-full flex items-baseline md:items-center justify-center">
                     <div className="relative w-80 h-80 rounded-3xl border border-gray-700/50 backdrop-blur-sm grid grid-cols-3 gap-4 p-8">
 
                         {['next','react','typescript','java','go','firebase','csharp','googleanalytics','postgresql'].map((s, i) => {
@@ -323,7 +323,7 @@ const AboutSection = () => {
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.5 }}
-                                className="h-[500px]"
+                                className="md:h-[500px]"
                             >
                                 {sections[activeIndex].visual}
                             </motion.div>
