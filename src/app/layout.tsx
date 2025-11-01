@@ -1,16 +1,29 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+    Bungee_Shade,
+    Geist,
+    Geist_Mono,
+    Georama, Monoton,
+    Orbitron, Rampart_One,
+    Rubik_Doodle_Shadow,
+    Share_Tech,
+    TASA_Orbiter
+} from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const georama = Georama({
+  variable: "--font-georama",
   subsets: ["latin"],
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const orbitron = TASA_Orbiter({
+    variable: "--font-orbit",
+    weight: "400"
+})
+const logoFont = Rampart_One({
+    variable: "--font-logo",
+    weight: "400"
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,8 +38,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${georama.variable} ${orbitron.variable} ${logoFont.variable} antialiased`}
       >
+        <Navbar/>
         {children}
       </body>
     </html>
